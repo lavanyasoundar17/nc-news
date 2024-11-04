@@ -1,0 +1,38 @@
+/* Header.css */
+.header-text {
+    text-align: center;
+    background-color: #83a6ed;
+    padding: 20px;
+    color: white;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    background-color: #4a8292;
+    padding: 10px;
+    border-top: 2px solid #ccc;
+}
+
+.nav-links a {
+    color: #282c34;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff6347;
+    transform: scale(1.1);
+}
+
+.nav-links a:active {
+    color: #ff4500;
+}
