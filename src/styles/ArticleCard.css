@@ -39,3 +39,43 @@
 .article-author {
     font-style: italic;
 }
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    min-height: 60px;
+    margin-bottom: 10px;
+}
+
+.comment-form button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.comment button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    margin-left: 5px;
+}
