@@ -10,11 +10,11 @@ const Header =()=>{
             </div>
             <nav className="nav-links">
                 <Link to = "/home">Home</Link>
-                <Link to = "/articles">Articles</Link>
                 <Link to = "/users">Users</Link>
                 <Link to = "/topics">Topics</Link>
 
             </nav>
+            
             </div>
 
     )
