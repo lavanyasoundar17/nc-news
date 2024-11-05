@@ -1,25 +1,32 @@
 import '../styles/ArticleCard.css'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Article = () => {
     const { article_id } = useParams();
     const [article, setArticle] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const api = axios.create({
+        baseURL : 'https://nc-news-rhi4.onrender.com'
+    })
+
+    const fetchArticle = async () => {
+        setLoading(true);
+        try {
+            const response = await api.get(`/api/articles/${article_id}`);            
+            setArticle(response.data.article);
+            
+        } catch (error) {
+            console.error(error.message,"Fetching Err");
+        }finally{
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchArticle = async () => {
-            try {
-                const response = await fetch(`http://localhost:9090/api/articles/${article_id}`);
-                if (!response.ok) throw new Error('Failed to fetch article');
-                const data = await response.json();
-                setArticle(data.article);
-                setLoading(false);
-            } catch (error) {
-                console.error(error);
-                setLoading(false);
-            }
-        };
+        
         fetchArticle();
     }, [article_id]);
 

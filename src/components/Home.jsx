@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import '../styles/Home.css';
+import axios from 'axios';
 
 const Home = () => {
     const [articles, setArticles] = useState([]);
     const [sortedArticles, setSortedArticles] = useState([]);
     const [sortOption, setSortOption] = useState("date");
 
+    const api = axios.create({
+        baseURL : 'https://nc-news-rhi4.onrender.com'
+    })
+
     const fetchArticles = async () => {
         try {
-            const response = await fetch('http://localhost:9090/api/articles');
-            const data = await response.json();
-            setArticles(data.articles);
+            const response = await api.get('/api/articles');
+            setArticles(response.data.articles);
         } catch {
             console.error("Error fetching articles");
         }
@@ -19,7 +23,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchArticles();
-    }, []);
+    }, []); 
 
     useEffect(() => {
         if (articles.length > 0) {
