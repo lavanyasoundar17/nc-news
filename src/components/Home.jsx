@@ -5,56 +5,55 @@ import axios from 'axios';
 
 const Home = () => {
     const [articles, setArticles] = useState([]);
-    const [sortedArticles, setSortedArticles] = useState([]);
-    const [sortOption, setSortOption] = useState("date");
+    const [sortOption, setSortOption] = useState("created_at"); 
+    const [order, setOrder] = useState("desc");
+    const [loading, setLoading] = useState(true);
 
     const api = axios.create({
         baseURL : 'https://nc-news-rhi4.onrender.com'
     })
 
-    const fetchArticles = async () => {
+    const fetchArticles = async (sort_by, order) => {
+        setLoading(true); 
         try {
-            const response = await api.get('/api/articles');
+            const response = await api.get(`/api/articles?sort_by=${sort_by}&order=${order}`);
             setArticles(response.data.articles);
-        } catch {
-            console.error("Error fetching articles");
+        } catch (error) {
+            console.error("Error fetching articles:", error);
+        }finally{
+            setLoading(false);
         }
     };
 
     useEffect(() => {
-        fetchArticles();
+        fetchArticles(sortOption, order);
     }, []); 
 
     useEffect(() => {
-        if (articles.length > 0) {
-            let sortedArray = [...articles];  
-            if (sortOption === "date") {
-                sortedArray.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-            } else if (sortOption === "title") {
-                sortedArray.sort((a, b) => a.title.localeCompare(b.title));
-            } else if (sortOption === "author") {
-                sortedArray.sort((a, b) => a.author.localeCompare(b.author));
-            }
-            setSortedArticles(sortedArray);  
-        } else {
-            setSortedArticles([]);  
-        }
-    }, [sortOption, articles]);  
+        fetchArticles(sortOption, order);
+    }, [sortOption, order]);  
 
     return (
         <div className="welcome_text">
             <h2>Welcome to NC news!</h2>
             <div>
                 <label>Sort by: </label>
-                <select onChange={(e) => setSortOption(e.target.value)}>
-                    <option value="date">Date</option>
-                    <option value="title">Title</option>
-                    <option value="author">Author</option>
+                <select onChange={(e) => {
+                    const [sortBy, order] = e.target.value.split('|'); 
+                    setSortOption(sortBy);
+                    setOrder(order);
+                }}>
+                    <option value="created_at|desc">Date (Newest)</option>
+                    <option value="created_at|asc">Date (Oldest)</option>
+                    <option value="title|asc">Title (A-Z)</option>
+                    <option value="title|desc">Title (Z-A)</option>
+                    <option value="author|asc">Author (A-Z)</option>
+                    <option value="author|desc">Author (Z-A)</option>
                 </select>
             </div>
             <ul className="articles_list">
-                {sortedArticles.map((article, index) => (
-                    <div key={index} className="article_container">
+                {articles.map((article) => (
+                    <div key={article.article_id} className="article_container">
                         <h3>
                             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
                         </h3>
