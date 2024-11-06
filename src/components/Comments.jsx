@@ -6,13 +6,12 @@ import CommentForm from './CommentForm';
 const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments }) => {
     const [comments, setComments] = useState([]);
     const [commentLoading, setCommentLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [errorMessages, setErrorMessages] = useState({}); // Track errors by comment ID
 
     const api = axios.create({
         baseURL: 'https://nc-news-rhi4.onrender.com'
     });
 
-    
     const fetchComments = async () => {
         setCommentLoading(true);
         try {
@@ -34,8 +33,10 @@ const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments })
             await api.delete(`/api/comments/${comment_id}`);
             setTriggerFetchComments((prev) => !prev);
         } catch (error) {
-            console.error("Error deleting comment:", error.response ? error.response.data : error);
-            setError("Error deleting comment");
+            setErrorMessages(prevErrors => ({
+                ...prevErrors,
+                [comment_id]: "Error deleting comment" 
+            }));
         }
     };
 
@@ -48,7 +49,16 @@ const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments })
                 comments.length > 0 ? (
                     <ul>
                         {comments.map(comment => (
-                            <Comment key={comment.comment_id} comment={comment} onDelete={handleDeleteComment} />
+                            <li key={comment.comment_id}>
+                                <Comment 
+                                    comment={comment} 
+                                    onDelete={() => handleDeleteComment(comment.comment_id)} 
+                                />
+                                {/* Display error message for this specific comment if it exists */}
+                                {errorMessages[comment.comment_id] && (
+                                    <p className="error-message">{errorMessages[comment.comment_id]}</p>
+                                )}
+                            </li>
                         ))}
                     </ul>
                 ) : (
@@ -56,7 +66,6 @@ const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments })
                 )
             )}
             <CommentForm article_id={article_id} setTriggerFetchComments={setTriggerFetchComments} />
-            {error && <p className="error-message">{error}</p>}
         </section>
     );
 };
