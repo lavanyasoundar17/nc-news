@@ -6,7 +6,7 @@ import CommentForm from './CommentForm';
 const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments }) => {
     const [comments, setComments] = useState([]);
     const [commentLoading, setCommentLoading] = useState(false);
-    const [errorMessages, setErrorMessages] = useState({}); // Track errors by comment ID
+    const [errorMessages, setErrorMessages] = useState({}); 
 
     const api = axios.create({
         baseURL: 'https://nc-news-rhi4.onrender.com'
@@ -54,7 +54,6 @@ const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments })
                                     comment={comment} 
                                     onDelete={() => handleDeleteComment(comment.comment_id)} 
                                 />
-                                {/* Display error message for this specific comment if it exists */}
                                 {errorMessages[comment.comment_id] && (
                                     <p className="error-message">{errorMessages[comment.comment_id]}</p>
                                 )}
