@@ -26,6 +26,9 @@ const CommentForm = ({ article_id, setTriggerFetchComments }) => {
             console.error("Error posting comment:", error.response ? error.response.data : error);
             setError("Error posting comment");
         }
+        finally{
+            setError(null);  
+        }
     };
 
     return (
