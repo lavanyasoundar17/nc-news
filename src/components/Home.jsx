@@ -60,12 +60,8 @@ const Home = () => {
         fetchTopics(); 
     }, []);
 
-    if (loading) return <p>Loading articles...</p>;
-
     return (
-        <div className="welcome_text">
-            <h2>Welcome to NC News!</h2>
-
+        <div className='home-container'>
             <div className="dropdown-container">
                 <div className="sort-dropdown">
                     <label>Sort by: </label>
@@ -99,21 +95,25 @@ const Home = () => {
                 </div>
             </div>
 
-            <ul className="articles_list">
-                {articles.length > 0 ? (
-                    articles.map((article) => (
-                        <div key={article.article_id} className="article_container">
-                            <h3>
-                                <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
-                            </h3>
-                            <img src={article.article_img_url} alt={article.title} />
-                            <p>By {article.author}</p>
-                        </div>
-                    ))
-                ) : (
-                    <p>No articles available for this topic.</p>
-                )}
-            </ul>
+            {loading ? (
+                <div className="loading-spinner"></div>
+            ) : (
+                <ul className="articles_list">
+                    {articles.length > 0 ? (
+                        articles.map((article) => (
+                            <div key={article.article_id} className="article_container">
+                                <h3>
+                                    <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
+                                </h3>
+                                <img src={article.article_img_url} alt={article.title} />
+                                <p>By {article.author}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No articles available for this topic.</p>
+                    )}
+                </ul>
+            )}
         </div>
     );
 };

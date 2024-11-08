@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Comment = ({ comment, onDelete }) => {
+    console.log("Deleting comment with id:", comment.comment_id);
     return (
         <li className="comment">
             <p><strong>{comment.author}</strong>: {comment.body}</p>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../styles/Comment.css';
 
-const CommentForm = ({ article_id, setTriggerFetchComments }) => {
+const CommentForm = ({ article_id, handleAddComment }) => {
     const [newComment, setNewComment] = useState("");
     const [username, setUsername] = useState("");
     const [error, setError] = useState(null);
@@ -12,22 +13,24 @@ const CommentForm = ({ article_id, setTriggerFetchComments }) => {
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
-        if (!newComment.trim() || !username.trim()) return; 
+        if (!newComment.trim() || !username.trim()) {
+            setError("Username and comment cannot be empty.");
+            return;
+        }
 
         try {
             const response = await api.post(`/api/articles/${article_id}/comments`, {
                 username,
                 body: newComment
             });
+
+            handleAddComment(response.data.comment); 
             setNewComment("");
-            setUsername(""); 
-            setTriggerFetchComments((prev) => !prev);
+            setUsername("");
+            setError(null);
         } catch (error) {
             console.error("Error posting comment:", error.response ? error.response.data : error);
-            setError("Error posting comment");
-        }
-        finally{
-            setError(null);  
+            setError(error.response?.data?.message || "Error posting comment. Please try again with valid username");
         }
     };
 
@@ -47,7 +50,7 @@ const CommentForm = ({ article_id, setTriggerFetchComments }) => {
                 required
             />
             <button type="submit">Post Comment</button>
-            {error && <p className="error-message">{error}</p>}
+            {error && <p style={{ color: 'red', fontSize :'15px' }}>{error}</p>}
         </form>
     );
 };

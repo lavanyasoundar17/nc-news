@@ -1,23 +1,13 @@
-import { Link } from "react-router-dom"
-import '../styles/Header.css'
+import { Link } from "react-router-dom";
+import '../styles/Header.css';
 
-
-const Header =()=>{
-    return(
-        <div>
-        <div className="header-text">
-            <h1>Northcoders News</h1>
-            </div>
-            <nav className="nav-links">
-                <Link to = "/home">Home</Link>
-                <Link to = "/users">Users</Link>
-                <Link to = "/topics">Topics</Link>
-
-            </nav>
-            
-            </div>
-
-    )
+const Header = () => {
+    return (
+        <div className="header">
+            <h1 className="header-text">Northcoders News</h1>
+            <Link to="/home" className="home-button">Home</Link>
+        </div>
+    );
 }
 
 export default Header;

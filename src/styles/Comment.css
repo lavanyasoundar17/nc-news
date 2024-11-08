@@ -1,0 +1,91 @@
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    max-width: 500px;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: #0077ff;
+    box-shadow: 0 0 5px rgba(0, 119, 255, 0.2);
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-size: 0.95rem;
+}
+
+.comment-form button {
+    width: 30%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #0077ff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+    background-color: #005bb5;
+}
+
+.comment-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #d9534f;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .comment-form {
+        max-width: 90%;
+        padding: 1.2rem;
+    }
+
+    .comment-form button {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .comment-form {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .comment-form button {
+        width: 60%;
+    }
+
+    .comment-form textarea {
+        min-height: 60px;
+    }
+}
