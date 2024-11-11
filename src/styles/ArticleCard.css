@@ -62,8 +62,9 @@
     background-color: #005bb5;
 }
 .vote-button:disabled {
-    background-color: #ccaa3b;
+    background-color: #cccccc;
     cursor: not-allowed;
+    color:black;
 }
 .article-votes {
     font-weight: bold;
