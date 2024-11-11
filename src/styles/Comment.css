@@ -16,6 +16,9 @@
     color: #f3e7e1;
     border:none;
 }
+.del-button:hover {
+    background-color: #005bb5;
+}
 
 .comment-form input[type="text"],
 .comment-form textarea {

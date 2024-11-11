@@ -58,6 +58,13 @@
     color: #f3e7e1;
     border:none;
 }
+.vote-button:hover {
+    background-color: #005bb5;
+}
+.vote-button:disabled {
+    background-color: #ccaa3b;
+    cursor: not-allowed;
+}
 .article-votes {
     font-weight: bold;
     color: #007bff;
@@ -65,34 +72,6 @@
 
 .article-author {
     font-style: italic;
-}
-
-.comments-section {
-    margin-top: 20px;
-}
-
-.comment-form {
-    margin-top: 10px;
-}
-
-.comment-form textarea {
-    width: 100%;
-    min-height: 60px;
-    margin-bottom: 10px;
-}
-
-.comment-form button {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color:#ccaa3b;
-    color: #f3e7e1;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.comment-form button:hover {
-    background-color: #0056b3;
 }
 
 .error-message {
