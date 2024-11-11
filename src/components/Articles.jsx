@@ -32,7 +32,15 @@ const Article = () => {
         fetchArticle();
     }, [article_id]);
 
-    if (loading) return <div className="loading-spinner"></div>;
+    if (loading) {
+        return (
+            <div className="loader-container">
+                <div className="loading-spinner"></div>
+            </div>
+        );
+    }
+    
+
 
     if (!article) return <div>Article not found</div>;
 

@@ -45,7 +45,7 @@ const Article_Card = ({ article }) => {
             <p>By {article.author}</p>
             <p>Published on {new Date(article.created_at).toLocaleString()}</p>
             <p className="article-votes">Votes: {votes}</p>
-            <button onClick={handleVote} disabled={hasVoted || loading}>
+            <button className='vote-button'  onClick={handleVote} disabled={hasVoted || loading}>
                 {hasVoted ? "Voted" : loading ? "Voting..." : "Vote"}
             </button>
             {error && <p className="error-message">{error}</p>}

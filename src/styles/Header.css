@@ -1,77 +1,62 @@
-body {
-    margin: 0;
+.body{
+    margin :0;
+    padding:0;
 }
-
 .header {
-    
     display: flex;
-    justify-content: center;
+    justify-content: space-between;  
     align-items: center;
-    padding: 20px;
-    background-color: #a9c6e5;
-    position: relative;
-}
-
-.header-text {
-    font-size: 2rem;
-    color: #333;
-    margin: 0;
-}
-
-.home-button {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 5px 15px;
-    background-color: #0077ff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    padding: 16px 24px;
+    background-color: #1c1e24;
+    color: #f5f5f5;
+     
+  }
+  
+  .header-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    flex-grow: 1;  
+  }
+  
+  .home-button {
+    font-size: 1rem;
+    padding: 8px 12px;
     text-decoration: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.home-button:hover {
-    background-color: #005bb5;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+    transition: color 0.3s;
+    background-color:#ccaa3b;
+    color: #f3e7e1;
+  }
+  
+  
+  @media (max-width: 768px) {
     .header {
-        padding: 15px;
+      padding: 12px 16px;
     }
-
+  
     .header-text {
-        font-size: 1.5rem;
+      font-size: 1.3rem;
     }
-
+  
     .home-button {
-        font-size: 0.8rem;
-        padding: 5px 10px;
-        right: 10px;
+      font-size: 0.9rem;
+      padding: 6px 10px;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .header {
-        flex-direction: column;
-        padding: 10px;
-        justify-content: center;
+      padding: 10px 12px;
     }
-
+  
     .header-text {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
+      font-size: 1.2rem;
     }
-
+  
     .home-button {
-        font-size: 0.8rem;
-        padding: 5px 10px;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
+      font-size: 0.85rem;
+      padding: 6px 10px;
     }
-}
+  }
+  

@@ -64,7 +64,9 @@ const Home = () => {
         <div className='home-container'>
             <div className="dropdown-container">
                 <div className="sort-dropdown">
+                    <div className='sort-text'>
                     <label>Sort by: </label>
+                    </div>
                     <select 
                         onChange={(e) => {
                             const [sortBy, sortOrder] = e.target.value.split('|');
@@ -83,7 +85,9 @@ const Home = () => {
                 </div>
 
                 <div className="topic-dropdown">
+                <div className='sort-text'>
                     <label>Select Topic: </label>
+                    </div>
                     <select onChange={(e) => setSelectedTopic(e.target.value)} value={selectedTopic}>
                         <option value="">All Topics</option>
                         {topics.map((topic) => (
@@ -96,7 +100,9 @@ const Home = () => {
             </div>
 
             {loading ? (
+                <div className="loader-container">
                 <div className="loading-spinner"></div>
+            </div>
             ) : (
                 <ul className="articles_list">
                     {articles.length > 0 ? (

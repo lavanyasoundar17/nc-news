@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
+import '../styles/Comment.css';
+
 
 const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments }) => {
     const [comments, setComments] = useState([]);
     const [commentLoading, setCommentLoading] = useState(false);
-    const [errorMessages, setErrorMessages] = useState({}); // Store error messages for each comment
-
+    const [errorMessages, setErrorMessages] = useState({}); 
     const api = axios.create({
         baseURL: 'https://nc-news-rhi4.onrender.com'
     });
@@ -39,7 +40,6 @@ const Comments = ({ article_id, triggerFetchComments, setTriggerFetchComments })
         } catch (error) {
             console.error("Error deleting comment", error);
 
-            // Update the errorMessages state for the specific comment
             setErrorMessages((prevErrors) => ({
                 ...prevErrors,
                 [comment_id]: "Unable to delete comment. Please try again later."

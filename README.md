@@ -14,7 +14,10 @@ This is a news aggregation app built with React. It allows users to view news ar
 
 ## Backend Repository
 The backend API that powers this app can be found here:
-https://github.com/lavanyasoundar17/be-nc-news
+https://nc-news-rhi4.onrender.com/api/articles
+
+- The app is powered by a backend deployed on **Render**.
+- The data is stored and managed using **Supabase**.
 
 ## Prerequisites
 - **Node.js**: You will need to have Node.js installed to run this project locally.  

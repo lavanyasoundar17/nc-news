@@ -10,6 +10,7 @@ return(
   <div>
     <Header />
     <Routes>
+    <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />}/>
       <Route path="/articles/:article_id" element={<Articles />}/>
     </Routes>
